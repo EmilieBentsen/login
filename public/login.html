@@ -5,6 +5,19 @@
     <link rel="stylesheet" href="./login.css">
   </head>
   <body>
+    <script src="./frontpage.js"></script>
+    <div class="header">
+      <h1>My Website</h1>
+      <p>A website created by me.</p>
+    </div>
+    
+    <div class="navbar">
+      <a href="./login.html">Login</a>
+      <a href="./signup.html">Sign Up!</a>
+      <a href="#">Link</a>
+      <a href="#" class="right">Link</a>
+    </div>
+
     <form action="/login" method="post">
         <div class="imgcontainer">
           <img src="loglady.jpg" alt="Avatar" class="avatar">
@@ -12,10 +25,10 @@
       
         <div class="container">
           <label for="uname"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="Username" required>
+          <input type="username" placeholder="Enter Username" name="username" required>
       
           <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="Password" required>
+          <input type="password" placeholder="Enter Password" name="password" required>
       
           <button type="submit">Login</button>
           <label>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/post/post.css">
+</head>
+<body>
+  <script src="signup/signup.js"></script>
+  <div class="header">
+    <h1>My Website</h1>
+    <p>A website created by me.</p>
+    <p class="user"><%= currentUser.username%></p>
+  </div>
+  
+  <div class="navbar">
+    <a href="/login">Login</a>
+    <a href="/signup">Sign Up!</a>
+    <a href="/post">Post</a>
+    <a href="/content">Content</a>
+
+    <a href="#">Link</a>
+    <a href="#" class="right">Link</a>
+  </div>
+    <form action="/post" style="border:1px solid #ccc" method="POST">
+        <div class="container">
+          <h1>Contribute to the site</h1>
+          <p>Make a post about something interesting</p>
+          <hr>
+      
+          <label for="title"><b>Title</b></label>
+          <br></br>
+          <input class="content" type="title" placeholder="Title" name="title" required>
+          <br></br>
+          <label id="description" for="des"><b>Description</b></label>
+          <br></br>
+          <input class="content" type="description" placeholder="Description" name="description" required>
+          <span id = "message" style="color:red"> </span> 
+          <br></br>
+          <label id="content" for="content"><b>Content</b></label>
+          <br></br>
+          <input class="content" type="content" placeholder="write content" name="content" required>
+  
+          <div class="clearfix">
+            <button type="submit" class="postbtn">Post</button>
+          </div>
+        </div>
+      </form>
+    
+</body>
+</html>

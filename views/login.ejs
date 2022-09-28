@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Example Login Form</title>
+    <link rel="stylesheet" href="/login/login.css">
+  </head>
+  <body>
+    <script src="/login/login.js"></script>
+    <div class="header">
+      <h1>My Website</h1>
+      <p>A website created by me.</p>
+      <p class="user"><%= currentUser.username%></p>
+    </div>
+    
+    <div class="navbar">
+      <a href="/login">Login</a>
+      <a href="/signup">Sign Up!</a>
+      <a href="/post">Post</a>
+      <a href="/content">Content</a>
+
+      <a href="#">Link</a>
+      <a href="#" class="right">Link</a>
+    </div>
+
+    <form action="/login" method="post">
+        <div class="imgcontainer">
+          <img src="/login/loglady.jpg" alt="Avatar" class="avatar">
+        </div>
+      
+        <div class="container">
+          <label for="uname"><b>Username</b></label>
+          <input type="username" placeholder="Enter Username" name="username" required>
+      
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="password" required>
+      
+          <button type="submit">Login</button>
+          <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+          </label>
+        </div>
+      
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+      </form>
+  </body>
+</html>

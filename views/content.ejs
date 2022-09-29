@@ -11,38 +11,45 @@
 </head>
 <body>
     <script src="/index/index.js"></script>
+
     <div class="header">
-      <h1>My Website</h1>
-      <p>A website created by me!</p>
-      
-    </div>
+        <h1>Node.js guide</h1>
+        <p>A website where you can post facts about Node.js!</p>
+        
+      </div>
     
     <div class="navbar">
-      <a href="/login">Login</a>
-      <a href="/signup">Sign Up!</a>
-      <a href="/post">Post</a>
-      <a href="/content">Content</a>
-
-      <a href="#">Link</a>
-      <a href="#" class="right">Link</a>
+        <% if(currentUser.id == 0){ %>
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up!</a>
+            <% } %>
+            
+            <a class="right">Hey <%= currentUser.username%>!</a>
+            <% if(currentUser.id != 0){ %>
+              <a href="/post" class="right">Post</a>
+              <a href="/content" class="right">Content</a>
+              <a href="/logout">Logout</a>
+            <% } %>
     </div>
-
-    <tbody>
-        <% if(data.length){ for(var i = 0; i< data.length; i++) {%>
-            <br></br>
-        <tr>
-          <th scope="content"><%= (i+1) %></th>
-          <td><%= data[i].title%></td>
-          <td><%= data[i].description%></td>
-          <td><%= data[i].content%></td>
-
-        </tr>
-        <% } }else{ %>
-        <tr>
-          <td>No data ever existed.</td>
-        </tr>
-        <% } %>
-      </tbody>
+    <% if(currentUser.id != 0){ %>
+        <div class="post">
+            <% if(data.length){ for(var i = 0; i< data.length; i++) {%>
+                <br></br>
+            <div class="post">
+              <h1 class="title"><%= (i+1) %>. <%=data[i].title%></h1>
+              <h5 class="description"><%= data[i].description%></h5>
+              <p class="content"><%= data[i].content%></p>
+    
+            </div>
+            <% } }else{ %>
+            <div>
+              <td>No data ever existed.</td>
+            </div>
+            <% } %>
+        </div>
+        
+          
+    <% } %>
 
 </body>
 </html>

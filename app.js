@@ -40,10 +40,15 @@ let users = [
 let currentId = 3;
 let currentUser = {
     id: 0,
-    username: "You are not logged in",
+    username: "you are not logged in",
     password: 1234
 };
-let content = [];
+let content = [{
+    title: "Package.json",
+    description: "package file with dependencies",
+    content: "This document is all you need to know about what's required in your package.json file. It must be actual JSON, not just a JavaScript object literal."
+
+}];
 
 
 app.get("/", (req, res) => {
@@ -56,9 +61,14 @@ app.get("/", (req, res) => {
 app.get("/login", (req, res) => {
    // res.sendFile(path.resolve("public/login/login.html"));
    //const user = {name: "Emilie"};
+   const message = {
+
+        message: ""
+    }
     res.render("login", {
-        currentUser
-    } )
+        currentUser,
+        message
+    });
 });
 
 app.post('/login', async (req, res) => {
@@ -81,13 +91,23 @@ app.post('/login', async (req, res) => {
             if (passwordMatch) {
                 //let usrname = foundUser.username;
                 //res.render("index/index.pug", {message: "Hi! " + currentUser.username});
-                res.render("index", {
+                res.render("content", {
+                    data: content,
                     currentUser
                 } );
                 //res.send(`<div align ='center'><h2>login successful</h2></div><br><br><br><div align ='center'><h3>Hello ${usrname}</h3></div><br><br><div align='center'><a href='./login.html'>logout</a></div>`);
             } else {
+                const message = {
+                    message: "Incorrect password, try again"
+                }
+                currentUser = {
+                    id: 0,
+                    username: "You are not logged in",
+                    password: 1234
+                };
                 res.render("login", {
-                    currentUser
+                    currentUser,
+                    message
                 } );;
             }
         }
@@ -95,9 +115,14 @@ app.post('/login', async (req, res) => {
     
             let fakePass = `$2b$$10$ifgfgfgfgfgfgfggfgfgfggggfgfgfga`;
             await bcrypt.compare(req.body.password, fakePass);
-            
+            const message = {
+                message: "User dosn't exist, try again"
+            }
+
             res.render("login", {
-                currentUser
+                currentUser,
+                message
+                
             } );
         }
     } catch{
@@ -132,9 +157,14 @@ app.post("/signup", async (req, res) => {
                 };
                 users.push(newUser);
                 console.log('User list', users);
+                const message = {
+
+                    message: ""
+                }
                 res.render("login", {
-                    currentUser
-                } );
+                    currentUser,
+                    message
+                });
                 //res.send("<div align ='center'><h2>Registration successful</h2></div><br><br><div align='center'><a href='login/login.html'>login</a></div><br><br><div align='center'><a href='signup/signup.html'>Register another user</a></div>");
             }else{
                 //res.send("<div align ='center'><h2>Passwords are not the same</h2></div><br><br><div align='center'><a href='./signup.html'>Register again</a></div>");
@@ -174,14 +204,29 @@ app.post("/post", (req, res) =>{
     console.log(post);
 
     res.render("content", {
-        data: content
+        data: content,
+        currentUser
     } )
 
 });
 
 app.get("/content", (req, res) =>{
     res.render("content", {
-        data: content
+        data: content,
+        currentUser
+    } )
+});
+
+app.get("/logout", (req, res) =>{
+
+    currentUser = {
+        id: 0,
+        username: "You are not logged in",
+        password: 1234
+    };
+    res.render("index", {
+        data: content,
+        currentUser
     } )
 });
 

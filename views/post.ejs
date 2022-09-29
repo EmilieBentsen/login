@@ -9,20 +9,25 @@
 </head>
 <body>
   <script src="signup/signup.js"></script>
-  <div class="header">
-    <h1>My Website</h1>
-    <p>A website created by me.</p>
-    <p class="user"><%= currentUser.username%></p>
-  </div>
+    <div class="header">
+      <h1>Node.js guide</h1>
+      <p>A website where you can post facts about Node.js!</p>
+      
+    </div>
   
   <div class="navbar">
-    <a href="/login">Login</a>
-    <a href="/signup">Sign Up!</a>
-    <a href="/post">Post</a>
-    <a href="/content">Content</a>
+    <% if(currentUser.id == 0){ %>
+      <a href="/login">Login</a>
+      <a href="/signup">Sign Up!</a>
+      <% } %>
+      
+      <a class="right">Hey <%= currentUser.username%>!</a>
+      <% if(currentUser.id != 0){ %>
+        <a href="/post" class="right">Post</a>
+        <a href="/content" class="right">Content</a>
+        <a href="/logout">Logout</a>
+      <% } %>
 
-    <a href="#">Link</a>
-    <a href="#" class="right">Link</a>
   </div>
     <form action="/post" style="border:1px solid #ccc" method="POST">
         <div class="container">
